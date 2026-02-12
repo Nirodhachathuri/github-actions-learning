@@ -83,10 +83,6 @@ jobs:
             echo "⚠️ No coverage report found"
           fi
 
-  with:
-    name: build-output
-    path: output.txt
-
   lint-check:
     name: Lint Check
     runs-on: ubuntu-latest
