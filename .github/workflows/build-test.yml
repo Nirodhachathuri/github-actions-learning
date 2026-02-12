@@ -18,6 +18,10 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x, 18.x]
+
+    env:
+      NODE_ENV: test
+      LOG_LEVEL: debug
     
     steps:
       - name: Checkout code
@@ -33,6 +37,11 @@ jobs:
       - name: Install dependencies
         working-directory: ./sample-app
         run: npm ci
+        
+      - name: Print environment
+        run: |
+          echo "Environment: ${{ env.NODE_ENV }}"
+          echo "Log Level: ${{ env.LOG_LEVEL }}"
       
       - name: Run linter
         working-directory: ./sample-app
