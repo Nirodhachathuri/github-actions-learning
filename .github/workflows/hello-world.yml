@@ -7,12 +7,12 @@ on:
 
 jobs:
   hello:
-    name: Say Hello
+    name: Say Hello hi
     runs-on: ubuntu-latest
     
     steps:
       - name: Print hello message
-        run: echo "🎉 Hello from GitHub Actions!"
+        run: echo "🎉 Hello from GitHub Actions!"  // hello world print 
       
       - name: Print current time
         run: date
