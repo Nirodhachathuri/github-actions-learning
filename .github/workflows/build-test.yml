@@ -19,6 +19,10 @@ jobs:
       matrix:
         node-version: [16.x, 18.x]
     
+    env:
+      NODE_ENV: test
+      LOG_LEVEL: debug
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,6 +46,11 @@ jobs:
       - name: Build application
         working-directory: ./sample-app
         run: npm run build
+        
+      - name: Print environment
+        run: |
+            echo "Environment: ${{ env.NODE_ENV }}"
+            echo "Log Level: ${{ env.LOG_LEVEL }}"
       
       - name: Run tests
         working-directory: ./sample-app
