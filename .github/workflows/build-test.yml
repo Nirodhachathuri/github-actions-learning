@@ -74,6 +74,10 @@ jobs:
             echo "⚠️ No coverage report found"
           fi
 
+  with:
+    name: build-output
+    path: output.txt
+
   lint-check:
     name: Lint Check
     runs-on: ubuntu-latest
@@ -94,6 +98,12 @@ jobs:
         working-directory: ./sample-app
         run: npm run lint
         continue-on-error: true
+
+      - name: Create artifact
+        run: echo "Build output" > output.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
 
   test-summary:
     name: Test Summary
