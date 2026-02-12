@@ -1,0 +1,25 @@
+name: Conditional Execution
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Common Step
+        run: echo "This runs on both main and develop."
+
+      - name: Deploy (main only)
+        if: github.ref == 'refs/heads/main'
+        run: echo "🚀 Deploying to production..."
+
+      - name: Development Notice (develop only)
+        if: github.ref == 'refs/heads/develop'
+        run: echo "🧪 Running development-specific checks..."
